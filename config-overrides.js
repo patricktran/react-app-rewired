@@ -20,7 +20,7 @@ const devServer = override.devServer || override.devserver
     (proxy, allowedHost) =>
       configFunction(proxy, allowedHost));
 
-const jest = override.jest || ((config) => config);
+ const jest = override.jest || ((config) => config);
 
 const pathsOverride = override.paths || ((paths, env) => paths);
 
