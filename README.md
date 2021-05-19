@@ -2,3 +2,27 @@
 
 > ℹ️
 This repo is a **fork** of https://github.com/timarney/react-app-rewired. It supports **async/await** for the **devServer** configuration. See test/react-app.
+
+```
+module.exports = {
+  // The Webpack config to use when compiling your react app for development or production.
+  webpack: function(config, env) {
+    // ...add your webpack config
+    return config;
+  },
+  // The function to use to create a webpack dev server configuration when running the development
+  // server with 'npm run start' or 'yarn start'.
+  devServer: async configFunction => {
+
+    //call your awaitable methods here
+    const result = await Promise.resolve('do something async');
+    console.log(result);
+
+    return (proxy, allowedHost) => {
+      const config = configFunction(proxy, allowedHost);
+      //do something with the result 
+      return config;
+    }
+  }
+}
+```
